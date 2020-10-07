@@ -6,6 +6,14 @@ CONTAINER_NAME=$(PROJECT):$(shell git rev-parse --abbrev-ref HEAD | sed 's/maste
 PORT=2222
 DOCKER_USER=docker
 
+FLOWMO_CONTAINER_NAME="flowmoco-debian-ssh:1.0.0"
+
+flowmo-build:
+	docker build --no-cache -t $(FLOWMO_CONTAINER_NAME) .
+
+flowmo-run:
+	docker run --rm -p $(PORT):22 -e SSH_KEY="$$(cat ./id_rsa_docker_debian_ssh.pub)" -it $(FLOWMO_CONTAINER_NAME)
+
 distribute: .FORCE
 	for b in $$(git branch --no-merged); do git merge-into $$b --no-edit; done
 

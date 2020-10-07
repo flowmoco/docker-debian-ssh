@@ -4,6 +4,20 @@ debian-ssh
 Simple Debian/Ubuntu Docker images with *passwordless* SSH access and a regular user
 with `sudo` rights
 
+
+Flowmoco Quickstart
+-----
+
+Run the following commands:
+
+    make make flowmo-build
+    make flowmo-run
+    
+Then can connect, e.g.
+
+    ssh -vp 2222 -i ~/.ssh/id_rsa_docker_debian_ssh docker@localhost
+
+
 Tags (and their corresponding official base images)
 ----
 
